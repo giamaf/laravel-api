@@ -13,7 +13,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        //! Preparo la query per mandare giù tutti i progetti
+        $projects = Project::all();
+
+        //! Restituisco un json da utilizzare nel front-end
+        return response()->json($projects);
     }
 
     /**
