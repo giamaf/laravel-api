@@ -31,10 +31,10 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
         // Ricerca manuale del project completo
-        $project = Project::whereIsCompleted(true)->find($id);
+        $project = Project::whereIsCompleted(true)->with('type')->whereSlug($slug)->first();
 
         // Se non trovo il project rispondo con un messaggio vuoto e codice 404
         if (!$project) return response(null, 404);
