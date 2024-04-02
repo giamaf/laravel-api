@@ -31,9 +31,16 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show(string $id)
     {
-        //
+        // Ricerca manuale del project completo
+        $project = Project::whereIsCompleted(true)->find($id);
+
+        // Se non trovo il project rispondo con un messaggio vuoto e codice 404
+        if (!$project) return response(null, 404);
+
+        // Altrimenti butto giù il post in formato JSON
+        return response()->json($project);
     }
 
     /**

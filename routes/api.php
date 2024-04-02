@@ -21,3 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 //* Creo la rotta index per l'API
 Route::apiResource('projects', ProjectController::class)->only('index');
+
+//* Creo la rotta show per l'API
+Route::get('projects/{id}', [ProjectController::class, 'show']);
