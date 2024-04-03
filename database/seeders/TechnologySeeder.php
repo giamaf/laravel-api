@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class TechnologySeeder extends Seeder
 {
@@ -41,6 +42,7 @@ class TechnologySeeder extends Seeder
 
             // Inserisco la label e l'immagine
             $new_technology->label = $technology['label'];
+            $new_technology->slug = Str::slug($technology['label']);
             $new_technology->image = $technology['image'];
             // Salvo le modifiche
             $new_technology->save();
