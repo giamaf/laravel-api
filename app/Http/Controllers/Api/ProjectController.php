@@ -14,7 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         //! Preparo la query per mandare giù tutti i progetti
-        $projects = Project::whereIsCompleted(true)->latest()->with('type')->get();
+        $projects = Project::whereIsCompleted(true)->latest()->with('type', 'technologies')->get();
 
         //! Restituisco un json da utilizzare nel front-end
         return response()->json($projects);
@@ -34,7 +34,7 @@ class ProjectController extends Controller
     public function show(string $slug)
     {
         // Ricerca manuale del project completo
-        $project = Project::whereIsCompleted(true)->with('type')->whereSlug($slug)->first();
+        $project = Project::whereIsCompleted(true)->with('type', 'technologies')->whereSlug($slug)->first();
 
         // Se non trovo il project rispondo con un messaggio vuoto e codice 404
         if (!$project) return response(null, 404);
