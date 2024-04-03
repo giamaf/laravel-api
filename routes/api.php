@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\TypeProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,6 @@ Route::apiResource('projects', ProjectController::class)->only('index');
 
 //* Creo la rotta show per l'API
 Route::get('projects/{id}', [ProjectController::class, 'show']);
+
+//* Creo la rotta per i progetti raggruppati per tipo
+Route::get('type/{slug}/projects', TypeProjectController::class);
