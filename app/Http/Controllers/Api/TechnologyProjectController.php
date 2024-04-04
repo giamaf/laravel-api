@@ -15,9 +15,9 @@ class TechnologyProjectController extends Controller
 
         if (!$technology) return response(null, 404);
 
-        $projects = Project::whereHas('technologies', function ($query) use ($technology) {
-            $query->where('technologies.id', $technology->id)->whereIsCompleted(true);
-        })->get();
+        $projects = Project::whereIsCompleted(true)->whereHas('technologies', function ($query) use ($technology) {
+            $query->where('technologies.id', $technology->id);
+        })->with('type', 'technologies')->get();
 
         return response()->json(['projects' => $projects, 'label' => $technology->label]);
     }
