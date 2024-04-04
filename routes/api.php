@@ -28,7 +28,7 @@ Route::apiResource('projects', ProjectController::class)->only('index');
 Route::get('projects/{id}', [ProjectController::class, 'show']);
 
 //* Creo la rotta per i progetti raggruppati per tipo
-Route::get('type/{slug}/projects', TypeProjectController::class);
+Route::get('types/{slug}/projects', TypeProjectController::class);
 
 //* Creo la rotta per i progetti raggruppati per tecnologia
-Route::get('technology/{slug}/projects', TechnologyProjectController::class);
+Route::get('technologies/{slug}/projects', TechnologyProjectController::class);

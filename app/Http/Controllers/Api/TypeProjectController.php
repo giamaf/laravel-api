@@ -15,7 +15,7 @@ class TypeProjectController extends Controller
 
         if (!$type) return response(null, 404);
 
-        $projects = Project::whereIsCompleted(true)->whereTypeId($type->id)->get();
+        $projects = Project::whereIsCompleted(true)->whereTypeId($type->id)->with('type', 'technologies')->get();
 
         return response()->json(['projects' => $projects, 'label' => $type->label]);
     }

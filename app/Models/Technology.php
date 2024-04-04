@@ -12,7 +12,7 @@ class Technology extends Model
 
     public function projects()
     {
-        $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Project::class);
     }
 
     public function renderLogos()
